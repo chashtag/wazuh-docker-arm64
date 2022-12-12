@@ -52,7 +52,7 @@ RUN chmod 755 /permanent_data.sh && \
     sync && /permanent_data.sh && \
     sync && rm /permanent_data.sh
 
-RUN curl http://mainpi.home/ca.crt > /usr/local/share/ca-certificates/home.crt
+RUN curl http://mainpi.home/ca.crt > /usr/local/share/ca-certificates/home.crt && update-ca-certificates
 
 
 # Services ports
