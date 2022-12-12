@@ -8,11 +8,11 @@ ARG WAZUH_TAG_REVISION=1
 ARG WAZUH_IMAGE_VERSION=4.3.10
 ARG TEMPLATE_VERSION=4.3
 ARG FILEBEAT_CHANNEL=filebeat-oss
-ARG FILEBEAT_VERSION=7.10.16
+ARG FILEBEAT_VERSION=7.17.8
 ARG WAZUH_FILEBEAT_MODULE="wazuh-filebeat-0.2.tar.gz"
 
 RUN apt-get update && apt install curl apt-transport-https lsb-release gnupg -y
-
+          
 COPY config/check_repository.sh /
 
 RUN chmod 775 /check_repository.sh
@@ -20,7 +20,7 @@ RUN source /check_repository.sh
 
 RUN apt-get update && \
     apt-get install wazuh-manager
-
+               
 RUN curl -L -O https://artifacts.elastic.co/downloads/beats/filebeat/${FILEBEAT_CHANNEL}-${FILEBEAT_VERSION}-arm64.deb &&\
     dpkg -i ${FILEBEAT_CHANNEL}-${FILEBEAT_VERSION}-arm64.deb && rm -f ${FILEBEAT_CHANNEL}-${FILEBEAT_VERSION}-arm64.deb && \
     curl -s https://packages.wazuh.com/4.x/filebeat/${WAZUH_FILEBEAT_MODULE} | tar -xvz -C /usr/share/filebeat/module
