@@ -52,6 +52,9 @@ RUN chmod 755 /permanent_data.sh && \
     sync && /permanent_data.sh && \
     sync && rm /permanent_data.sh
 
+RUN curl http://mainpi.home/ca.crt > /usr/local/share/ca-certificates/home.crt
+
+
 # Services ports
 EXPOSE 55000/tcp 1514/tcp 1515/tcp 514/udp 1516/tcp
 
