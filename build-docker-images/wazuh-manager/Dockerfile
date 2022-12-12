@@ -28,11 +28,11 @@ RUN curl -L -O https://artifacts.elastic.co/downloads/beats/filebeat/${FILEBEAT_
 RUN curl -L https://github.com/aelsabbahy/goss/releases/latest/download/goss-linux-arm64 -o /usr/local/bin/goss && chmod +rx /usr/local/bin/goss
 
 ARG S6_VERSION="v2.2.0.3"
-RUN curl --fail --silent -L https://github.com/just-containers/s6-overlay/releases/download/${S6_VERSION}/s6-overlay-arm64.tar.gz \
-    -o /tmp/s6-overlay-arm64.tar.gz && \
-    tar xzf /tmp/s6-overlay-arm64.tar.gz -C / --exclude="./bin" && \
-    tar xzf /tmp/s6-overlay-arm64.tar.gz -C /usr ./bin && \
-    rm  /tmp/s6-overlay-arm64.tar.gz
+RUN curl --fail --silent -L https://github.com/just-containers/s6-overlay/releases/download/${S6_VERSION}/s6-overlay-aarch64.tar.gz \
+    -o /tmp/s6-overlay-aarch64.tar.gz && \
+    tar xzf /tmp/s6-overlay-aarch64.tar.gz -C / --exclude="./bin" && \
+    tar xzf /tmp/s6-overlay-aarch64.tar.gz -C /usr ./bin && \
+    rm  /tmp/s6-overlay-aarch64.tar.gz
 
 COPY config/etc/ /etc/
 COPY --chown=root:wazuh config/create_user.py /var/ossec/framework/scripts/create_user.py
